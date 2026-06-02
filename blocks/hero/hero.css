@@ -7,43 +7,26 @@
   position: relative;
   height: 92vh;
   min-height: 500px;
-  background:
-    linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)),
-    url('/media_1226efe23e4ab41fb3a732571a1e44348e7499f57.jpg?width=1920&format=jpg&optimize=medium')
-    center right / cover no-repeat;
   background-color: #0a0a0a;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
   overflow: hidden;
   box-sizing: border-box;
   display: flex;
   align-items: center;
 }
 
-/* Hide picture element — image is CSS bg */
-.hero picture,
-.hero > div:first-child {
-  display: none !important;
-}
-
-/* If only one row (picture was removed), show it */
-.hero > div:only-child {
-  display: flex !important;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
-/* Text row */
-.hero > div:last-child,
-.hero .hero-text {
+.hero .hero-content {
   position: relative;
   z-index: 2;
   width: 100%;
+  max-width: none;
   padding: 0 64px;
   box-sizing: border-box;
 }
 
-.hero > div:last-child > div,
-.hero .hero-text > div {
+.hero .hero-content > div {
   max-width: 600px;
 }
 
@@ -63,6 +46,7 @@
   max-width: 520px;
 }
 
+.hero a.hero-cta,
 .hero p a {
   display: inline-block;
   background: #2A2AEA;
@@ -75,6 +59,7 @@
   transition: background 0.2s;
 }
 
+.hero a.hero-cta:hover,
 .hero p a:hover {
   background: #2849D2;
   color: #fff;
@@ -82,8 +67,7 @@
 }
 
 @media (width <= 900px) {
-  .hero > div:last-child,
-  .hero .hero-text {
+  .hero .hero-content {
     padding: 0 32px;
   }
 
