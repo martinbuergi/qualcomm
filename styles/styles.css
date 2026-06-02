@@ -11,43 +11,32 @@
  */
 
 :root {
-  /* Qualcomm brand colors */
-  --qc-blue: #2A2AEA;
-  --qc-blue-dark: #2849D2;
-  --qc-red: #E20028;
-  --qc-black: #0a0a0a;
-  --qc-dark-navy: #020B3F;
-  --qc-dark-card: #1a1a1a;
-  --qc-gray-light: #F5F6F7;
-  --qc-gray-border: #333333;
-
-  /* colors */
   --background-color: #ffffff;
   --light-color: #F5F6F7;
   --dark-color: #505050;
   --text-color: #0a0a0a;
   --link-color: #2A2AEA;
   --link-hover-color: #2849D2;
-
-  /* fonts */
-  --body-font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-  --heading-font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-
-  /* body sizes */
+  --body-font-family: "Source Sans Pro", system-ui, -apple-system, Arial, sans-serif;
+  --heading-font-family: "Source Sans Pro", system-ui, -apple-system, Arial, sans-serif;
   --body-font-size-m: 16px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
-
-  /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 38px;
-  --heading-font-size-l: 28px;
-  --heading-font-size-m: 22px;
-  --heading-font-size-s: 18px;
+  --heading-font-size-xxl: 52px;
+  --heading-font-size-xl: 42px;
+  --heading-font-size-l: 32px;
+  --heading-font-size-m: 24px;
+  --heading-font-size-s: 20px;
   --heading-font-size-xs: 16px;
-
-  /* nav height */
   --nav-height: 64px;
+  /* Qualcomm brand */
+  --qc-blue: #2A2AEA;
+  --qc-blue-dark: #2849D2;
+  --qc-red: #E20028;
+  --qc-black: #0a0a0a;
+  --qc-dark-navy: #020B3F;
+  --qc-card-bg: #1a1a1a;
+  --qc-card-border: #2a2a2a;
 }
 
 @media (width >= 900px) {
@@ -55,12 +44,11 @@
     --body-font-size-m: 16px;
     --body-font-size-s: 14px;
     --body-font-size-xs: 12px;
-
-    --heading-font-size-xxl: 48px;
-    --heading-font-size-xl: 38px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 18px;
+    --heading-font-size-xxl: 52px;
+    --heading-font-size-xl: 42px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 24px;
+    --heading-font-size-s: 20px;
     --heading-font-size-xs: 16px;
   }
 }
@@ -260,38 +248,23 @@ main > .section:first-of-type {
 
 @media (width >= 900px) {
   main > .section > div {
-    padding: 0 32px;
+    padding: 0 48px;
   }
 }
 
-/* --- Section background variants --- */
+/* ========== Qualcomm Section Variants ========== */
 
-main > .section.dark-hero {
-  background-color: var(--qc-black);
-  color: #fff;
-  padding: 0;
-  margin: 0;
-}
-
-main > .section.dark {
-  background-color: var(--qc-black);
-  color: #fff;
-}
-
-main > .section.dark-navy {
-  background-color: var(--qc-dark-navy);
-  color: #fff;
-}
-
+/* Dark sections */
+main > .section.dark,
+main > .section.dark-navy,
 main > .section.snapdragon-red {
-  background-color: var(--qc-red);
   color: #fff;
 }
 
-main > .section.light-gray {
-  background-color: var(--qc-gray-light);
-  color: var(--text-color);
-}
+main > .section.dark { background: var(--qc-black); }
+main > .section.dark-navy { background: var(--qc-dark-navy); }
+main > .section.snapdragon-red { background: var(--qc-red); }
+main > .section.light-gray { background: var(--light-color); }
 
 /* White text in dark/colored sections */
 main > .section.dark h1,
@@ -300,40 +273,56 @@ main > .section.dark h3,
 main > .section.dark h4,
 main > .section.dark p,
 main > .section.dark li,
-main > .section.dark-hero h1,
-main > .section.dark-hero h2,
-main > .section.dark-hero h3,
-main > .section.dark-hero p,
 main > .section.dark-navy h1,
 main > .section.dark-navy h2,
 main > .section.dark-navy h3,
 main > .section.dark-navy h4,
 main > .section.dark-navy p,
+main > .section.dark-navy li,
 main > .section.snapdragon-red h1,
 main > .section.snapdragon-red h2,
 main > .section.snapdragon-red h3,
-main > .section.snapdragon-red p {
-  color: #fff;
-}
+main > .section.snapdragon-red p,
+main > .section.snapdragon-red li { color: #fff; }
 
 main > .section.dark a:any-link,
-main > .section.dark-hero a:any-link,
 main > .section.dark-navy a:any-link,
 main > .section.snapdragon-red a:any-link {
   color: #fff;
   text-decoration: none;
 }
 
-/* Pill/chip links in colored sections -- last <p> containing sub-nav links */
+/* Eyebrow text style */
+main > .section.dark .default-content-wrapper > p:first-of-type,
+main > .section.dark-navy .default-content-wrapper > p:first-of-type,
+main > .section.snapdragon-red .default-content-wrapper > p:first-of-type {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+/* Developer section eyebrow override */
+main > .section.dark .default-content-wrapper > p:first-of-type {
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 3px;
+  opacity: 1;
+}
+
+/* Chip / tag links in colored sections */
 main > .section.dark .default-content-wrapper > p:last-of-type a,
 main > .section.dark-navy .default-content-wrapper > p:last-of-type a,
 main > .section.snapdragon-red .default-content-wrapper > p:last-of-type a {
   display: inline-block;
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 20px;
   padding: 5px 16px;
-  margin: 4px 4px;
+  margin: 4px 3px;
   font-size: 13px;
+  color: #fff;
   text-decoration: none;
   transition: background 0.2s;
 }
@@ -341,45 +330,12 @@ main > .section.snapdragon-red .default-content-wrapper > p:last-of-type a {
 main > .section.dark .default-content-wrapper > p:last-of-type a:hover,
 main > .section.dark-navy .default-content-wrapper > p:last-of-type a:hover,
 main > .section.snapdragon-red .default-content-wrapper > p:last-of-type a:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
   text-decoration: none;
-}
-
-/* Eyebrow text (first <p> in dark sections) */
-main > .section.dark .default-content-wrapper > p:first-of-type,
-main > .section.dark-navy .default-content-wrapper > p:first-of-type,
-main > .section.snapdragon-red .default-content-wrapper > p:first-of-type {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  opacity: 0.75;
-  margin-bottom: 8px;
-}
-
-/* Light-gray section */
-main > .section.light-gray a:any-link {
-  color: var(--qc-blue);
-}
-
-main > .section.light-gray h2 {
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--text-color);
-}
-
-main > .section.light-gray .default-content-wrapper > p:first-of-type {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--qc-blue);
 }
 
 /* CTA buttons in dark sections */
 main > .section.dark a.button,
-main > .section.dark-hero a.button,
 main > .section.dark-navy a.button {
   background-color: var(--qc-blue);
   border-color: var(--qc-blue);
@@ -387,7 +343,6 @@ main > .section.dark-navy a.button {
 }
 
 main > .section.dark a.button:hover,
-main > .section.dark-hero a.button:hover,
 main > .section.dark-navy a.button:hover {
   background-color: var(--qc-blue-dark);
   border-color: var(--qc-blue-dark);
@@ -403,6 +358,23 @@ main > .section.snapdragon-red a.button {
 main > .section.snapdragon-red a.button:hover {
   background-color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
+}
+
+/* Light gray section links */
+main > .section.light-gray a:any-link { color: var(--qc-blue); }
+main > .section.light-gray .default-content-wrapper > p:first-of-type {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--qc-blue);
+}
+
+main > .section.light-gray h2 {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
 }
 
 /* section metadata legacy */

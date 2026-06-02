@@ -1,10 +1,7 @@
-/* Qualcomm brand -- nav and footer overrides */
-
-/* --- Dark navigation --- */
-
+/* ===== Qualcomm Nav Dark Theme ===== */
 header .nav-wrapper {
-  background-color: #000000 !important;
-  border-bottom: 1px solid #222;
+  background: #000 !important;
+  border-bottom: 1px solid #1a1a1a;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,63 +10,58 @@ header .nav-wrapper {
 }
 
 header nav {
-  color: #ffffff;
+  color: #fff;
 }
 
 header nav a:any-link {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-header nav a:hover {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration: none;
+  color: #fff;
 }
 
 header nav .nav-brand {
-  font-size: 20px;
+  color: #fff;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: -0.5px;
-  color: #ffffff;
+  letter-spacing: -0.3px;
 }
 
 header nav .nav-brand a:any-link {
-  color: #ffffff;
+  color: #fff;
   font-weight: 700;
 }
 
 header nav .nav-sections ul {
-  gap: 32px;
+  gap: 28px;
 }
 
 header nav .nav-sections ul > li {
   font-size: 13px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #ffffff;
+  letter-spacing: 0.6px;
 }
 
 header nav .nav-sections ul > li > a {
-  color: #ffffff;
+  color: #fff;
 }
 
-header nav .nav-tools {
-  color: #ffffff;
+header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+  background: #111;
 }
 
 header nav .nav-hamburger button {
-  background-color: transparent !important;
+  background: transparent !important;
   color: #fff;
-  border: none;
 }
 
-/* --- Dark footer --- */
+header nav .nav-tools {
+  color: #fff;
+}
 
+/* ===== Qualcomm Footer Dark Theme ===== */
 footer .footer {
-  background-color: #0a0a0a;
-  color: rgba(255, 255, 255, 0.75);
-  border-top: 1px solid #222;
+  background: #0a0a0a;
+  color: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid #1a1a1a;
 }
 
 footer .footer > div {
@@ -93,28 +85,27 @@ footer .footer .default-content-wrapper {
   margin: auto;
 }
 
-footer .footer p {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 14px;
-}
-
 footer .footer strong {
-  color: #ffffff;
+  color: #fff;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
+  letter-spacing: 1.5px;
 }
 
 footer .footer ul {
   list-style: none;
   padding: 0;
-  margin: 12px 0;
+  margin: 12px 0 0;
 }
 
 footer .footer ul li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 14px;
+}
+
+footer .footer .columns > div {
+  gap: 48px;
+  align-items: flex-start;
 }
 
 footer .footer .columns-wrapper {
@@ -132,6 +123,22 @@ footer .footer .columns > div {
 footer .footer .columns > div > div {
   flex: 1;
   min-width: 160px;
+}
+
+footer .footer p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+footer .footer > div:last-child {
+  border-top: 1px solid #222;
+  margin-top: 40px;
+  padding-top: 24px;
+}
+
+footer .footer > div:last-child p {
+  font-size: 12px;
+  color: #666;
 }
 
 /* Legal bar at bottom of footer */
