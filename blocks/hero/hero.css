@@ -5,7 +5,7 @@
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 92vh;
   display: flex;
   align-items: center;
   padding: 120px 48px 80px;
@@ -14,43 +14,30 @@
   box-sizing: border-box;
 }
 
-/* Picture-in-paragraph becomes the full-bleed background */
-.hero > div > div > p:has(picture) {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 0;
-  z-index: 0;
-}
-
-.hero > div > div > p:has(picture)::after {
+.hero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.48);
   z-index: 1;
 }
 
+/* Row 1: picture — full bleed background */
 .hero picture {
-  display: block;
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  object-fit: cover;
+  box-sizing: border-box;
 }
 
 .hero img {
+  object-fit: cover;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center right;
 }
 
-/* Text content floats above */
-.hero > div > div > h1,
-.hero > div > div > p:not(:has(picture)) {
-  position: relative;
-  z-index: 2;
-}
-
+/* Row 2: text content */
 .hero .default-content-wrapper {
   position: relative;
   z-index: 2;
@@ -87,6 +74,12 @@
 
 .hero p a:hover {
   background: #2849D2;
-  text-decoration: none;
   color: #fff;
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  .hero {
+    padding: 120px 64px 80px;
+  }
 }
