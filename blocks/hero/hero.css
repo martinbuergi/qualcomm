@@ -5,13 +5,16 @@
 
 .hero {
   position: relative;
-  min-height: 92vh;
+  height: 92vh;
+  min-height: 500px;
   background: #0a0a0a;
   overflow: hidden;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 
-/* Background image layer — injected by hero.js */
+/* Background image — injected by hero.js as .hero-bg */
 .hero .hero-bg {
   position: absolute;
   inset: 0;
@@ -39,14 +42,12 @@
   object-position: center right;
 }
 
-/* Text content layer */
+/* Text content — injected by hero.js as .hero-text */
 .hero .hero-text {
   position: relative;
   z-index: 2;
-  min-height: 92vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 64px 80px;
+  width: 100%;
+  padding: 0 64px;
   box-sizing: border-box;
 }
 
@@ -90,6 +91,6 @@
 
 @media (width <= 900px) {
   .hero .hero-text {
-    padding: 80px 32px 60px;
+    padding: 0 32px;
   }
 }
