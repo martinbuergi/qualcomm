@@ -1,3 +1,5 @@
+/* Hero block — full-bleed dark with background image */
+
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -5,33 +7,81 @@
 
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
-}
-
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 32px 80px;
+  background-color: #0a0a0a;
+  overflow: hidden;
 }
 
 .hero picture {
   position: absolute;
-  z-index: -1;
   inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  z-index: 0;
 }
 
 .hero img {
-  object-fit: cover;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.55;
+}
+
+.hero .default-content-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 16px;
+}
+
+.hero p.button-wrapper {
+  margin-top: 24px;
+}
+
+.hero a.button,
+.hero p > a:only-child {
+  display: inline-block;
+  background-color: #2A2AEA;
+  color: #fff !important;
+  border-radius: 24px;
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none !important;
+  transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.hero a.button:hover,
+.hero p > a:only-child:hover {
+  background-color: #2849D2;
+  text-decoration: none !important;
 }
 
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    padding: 120px 64px 100px;
+  }
+
+  .hero .default-content-wrapper {
+    max-width: 580px;
   }
 }
