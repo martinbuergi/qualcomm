@@ -402,3 +402,27 @@ main > .section:has(.hero) > div {
   max-width: unset !important;
   padding: 0 !important;
 }
+
+/* ===== dark-hero section (hero bg image via section metadata) ===== */
+main > .section.dark-hero {
+  min-height: 92vh;
+  background-color: #0a0a0a;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+main > .section.dark-hero > div {
+  max-width: none;
+  padding: 0;
+  width: 100%;
+}
+
+main > .section.dark-hero h1,
+main > .section.dark-hero h2,
+main > .section.dark-hero h3,
+main > .section.dark-hero p { color: #fff; }
