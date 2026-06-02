@@ -1,25 +1,23 @@
 export default function decorate(block) {
-  const rows = [...block.children];
-  if (!rows.length) return;
+  // Structure: .hero > div (row) > div (col1=text), div (col2=bg-url)
+  const row = block.querySelector(':scope > div');
+  if (!row) return;
 
-  const firstRow = rows[0];
-  const cells = [...firstRow.children];
-
-  // Two-column pattern: col[0] = text, col[1] = background image URL
-  if (cells.length >= 2) {
-    const bgUrl = cells[1].textContent.trim();
+  const cols = [...row.children];
+  if (cols.length >= 2) {
+    const bgUrl = cols[1].textContent.trim();
     if (bgUrl) {
       block.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.52),rgba(0,0,0,0.52)), url('${bgUrl}')`;
-      cells[1].remove();
+      cols[1].remove();
     }
   }
 
-  // Promote first (now only) cell as content wrapper
-  firstRow.className = 'hero-content';
+  // Style text column
+  if (cols[0]) cols[0].className = 'hero-content';
 
-  // Button decoration: make the first strong link a pill button
-  firstRow.querySelectorAll('strong a').forEach((a) => {
-    a.className = 'hero-cta';
+  // Unwrap strong around CTA links
+  block.querySelectorAll('strong a').forEach((a) => {
+    a.classList.add('hero-cta');
     a.closest('strong').replaceWith(a);
   });
 }

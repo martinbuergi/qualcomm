@@ -17,17 +17,19 @@
   align-items: center;
 }
 
+/* Hide the bg-url second cell (text node) */
+.hero > div > div + div {
+  display: none !important;
+}
+
+/* Text content wrapper */
+.hero > div > div:first-child,
 .hero .hero-content {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: none;
-  padding: 0 64px;
-  box-sizing: border-box;
-}
-
-.hero .hero-content > div {
   max-width: 600px;
+  padding: 0 0 0 64px;
+  box-sizing: border-box;
 }
 
 .hero h1 {
@@ -46,6 +48,7 @@
   max-width: 520px;
 }
 
+.hero p strong a,
 .hero a.hero-cta,
 .hero p a {
   display: inline-block;
@@ -59,6 +62,7 @@
   transition: background 0.2s;
 }
 
+.hero p strong a:hover,
 .hero a.hero-cta:hover,
 .hero p a:hover {
   background: #2849D2;
@@ -67,6 +71,7 @@
 }
 
 @media (width <= 900px) {
+  .hero > div > div:first-child,
   .hero .hero-content {
     padding: 0 32px;
   }
@@ -74,9 +79,4 @@
   .hero h1 {
     font-size: clamp(28px, 6vw, 40px);
   }
-}
-
-/* Hide bg-url column before JS processes it */
-.hero > div > div:last-child:not(.hero-content) {
-  display: none;
 }
