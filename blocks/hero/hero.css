@@ -9,15 +9,24 @@
   display: flex;
   align-items: center;
   padding: 120px 48px 80px;
-  background: #0a0a0a;
+  background: #0a0a0a url('https://s7d1.scene7.com/is/image/dmqualcommprod/qualcomm-homepage-hero-6g?wid=1600&fmt=webp&qlt=85') center right / cover no-repeat;
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
 }
 
 .hero picture {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: none;
 }
 
 .hero picture::after {
