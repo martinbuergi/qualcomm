@@ -384,3 +384,21 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+/* ===== Hero section overrides ===== */
+main > .section:has(.hero) {
+  padding: 0;
+  margin: 0;
+}
+
+main > .section:has(.hero) > div {
+  max-width: unset !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.hero-container > div,
+.hero-wrapper > div {
+  max-width: unset !important;
+  padding: 0 !important;
+}
