@@ -75,3 +75,8 @@
     font-size: clamp(28px, 6vw, 40px);
   }
 }
+
+/* Hide bg-url column before JS processes it */
+.hero > div > div:last-child:not(.hero-content) {
+  display: none;
+}
