@@ -1,6 +1,12 @@
 .hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
+  max-width: unset !important;
+  padding: 0 !important;
+}
+
+/* Section wrapper — remove max-width constraint */
+.hero-container {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .hero {
@@ -9,56 +15,57 @@
   background: #0a0a0a;
   overflow: hidden;
   box-sizing: border-box;
-  display: block;
 }
 
-/* ── Row 1: picture cell → full-bleed background ── */
+/* ── Pic row: main > div > .hero > div:first-child ── */
 .hero > div:first-child {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  max-width: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  max-width: none !important;
 }
 
 .hero > div:first-child > div {
-  position: absolute;
-  inset: 0;
-  padding: 0;
+  position: absolute !important;
+  inset: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
 }
 
 .hero > div:first-child picture {
-  position: absolute;
-  inset: 0;
-  display: block;
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
 }
 
 .hero > div:first-child img {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: cover;
   object-position: center right;
 }
 
-/* Dark overlay */
 .hero > div:first-child::after {
   content: '';
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.52);
   z-index: 1;
+  pointer-events: none;
 }
 
-/* ── Row 2: text cell → positioned above image ── */
+/* ── Text row ── */
 .hero > div:last-child {
   position: relative;
   z-index: 2;
-  padding: 120px 64px 80px;
   min-height: 92vh;
   display: flex;
   align-items: center;
+  padding: 120px 64px 80px !important;
+  max-width: none !important;
   box-sizing: border-box;
 }
 
