@@ -1,1 +1,144 @@
-/* add global styles that can be loaded post LCP here */
+/* Qualcomm brand -- nav and footer overrides */
+
+/* --- Dark navigation --- */
+
+header .nav-wrapper {
+  background-color: #000000 !important;
+  border-bottom: 1px solid #222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+header nav {
+  color: #ffffff;
+}
+
+header nav a:any-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+header nav .nav-brand {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+header nav .nav-brand a:any-link {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+header nav .nav-sections ul {
+  gap: 32px;
+}
+
+header nav .nav-sections ul > li {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+header nav .nav-sections ul > li > a {
+  color: #ffffff;
+}
+
+header nav .nav-tools {
+  color: #ffffff;
+}
+
+header nav .nav-hamburger button {
+  background-color: transparent !important;
+  color: #fff;
+  border: none;
+}
+
+/* --- Dark footer --- */
+
+footer .footer {
+  background-color: #0a0a0a;
+  color: rgba(255, 255, 255, 0.75);
+  border-top: 1px solid #222;
+}
+
+footer .footer > div {
+  max-width: 1280px;
+  margin: auto;
+  padding: 60px 32px 32px;
+}
+
+footer .footer a:any-link {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+footer .footer .default-content-wrapper {
+  max-width: 1280px;
+  margin: auto;
+}
+
+footer .footer p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+}
+
+footer .footer strong {
+  color: #ffffff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+footer .footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+
+footer .footer ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+footer .footer .columns-wrapper {
+  border-top: 1px solid #222;
+  padding-top: 40px;
+  margin-top: 32px;
+}
+
+footer .footer .columns > div {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+footer .footer .columns > div > div {
+  flex: 1;
+  min-width: 160px;
+}
+
+/* Legal bar at bottom of footer */
+footer .footer > div:last-of-type p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid #222;
+  padding-top: 20px;
+  margin-top: 20px;
+}
