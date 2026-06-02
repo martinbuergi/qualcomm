@@ -117,11 +117,24 @@ function decorateButtons(main) {
  * Decorates the main element.
  * @param {Element} main The main element
  */
+/**
+ * Applies section background images from data-background attributes set by Section Metadata.
+ */
+function applySectionBackgrounds(main) {
+  main.querySelectorAll('.section[data-background]').forEach((section) => {
+    const bg = section.dataset.background;
+    if (bg) {
+      section.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.52),rgba(0,0,0,0.52)), url('${bg}')`;
+    }
+  });
+}
+
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  applySectionBackgrounds(main);
   decorateBlocks(main);
   decorateButtons(main);
 }
