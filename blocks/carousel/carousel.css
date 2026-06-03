@@ -1,0 +1,220 @@
+/* =============================================
+   Qualcomm Hero Carousel Block
+   ============================================= */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 94vh;
+  min-height: 560px;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+/* Slides */
+.carousel-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 100px 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none;
+}
+
+.carousel-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 1;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.carousel-slide-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 0 40px;
+}
+
+@media (min-width: 900px) {
+  .carousel-slide-content {
+    padding: 0 80px;
+  }
+}
+
+/* Typography inside slides */
+.carousel-slide-content p:first-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin: 0 0 12px 0;
+}
+
+.carousel-slide-content h1,
+.carousel-slide-content h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 20px 0;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.carousel-slide-content p:not(:first-child) {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  max-width: 520px;
+  margin: 0 0 28px 0;
+}
+
+/* CTA buttons */
+.carousel-slide-content a {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-right: 12px;
+  margin-bottom: 8px;
+}
+
+.carousel-slide-content strong a,
+.carousel-slide-content p > strong > a {
+  background: #3700ff;
+  color: #fff;
+  border: 2px solid transparent;
+}
+
+.carousel-slide-content strong a:hover {
+  background: #2500cc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(55, 0, 255, 0.4);
+}
+
+/* Chip-style secondary links */
+.carousel-slide-content p:last-of-type a:not(strong a),
+.carousel-slide-content .carousel-chips a {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  color: #fff;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+}
+
+.carousel-slide-content p:last-of-type a:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Controls */
+.carousel-controls {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 40px;
+}
+
+@media (min-width: 900px) {
+  .carousel-controls {
+    padding: 0 80px;
+    justify-content: flex-start;
+  }
+}
+
+/* Progress dots/bars */
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carousel-dot {
+  position: relative;
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.carousel-dot.active {
+  width: 72px;
+}
+
+.carousel-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Prev/Next arrows */
+.carousel-prev,
+.carousel-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: #fff;
+}
+
+/* Section override: carousel needs no padding when it IS the section */
+.section:has(.carousel) {
+  padding: 0 !important;
+  background: #000 !important;
+}
