@@ -149,3 +149,93 @@ footer .footer > div:last-of-type p {
   padding-top: 20px;
   margin-top: 20px;
 }
+
+/* ===== Enhanced nav hover effects ===== */
+header nav .nav-sections ul > li > a:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Nav section links with underline animation */
+header nav .nav-sections ul > li {
+  position: relative;
+}
+
+header nav .nav-sections ul > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--qc-blue, #2A2AEA);
+  transition: width 0.2s ease;
+}
+
+header nav .nav-sections ul > li > a:hover::after {
+  width: 100%;
+}
+
+/* ===== Enhanced nav brand ===== */
+header nav .nav-brand a {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+/* ===== Nav search icon ===== */
+header nav .nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ===== Qualcomm footer improvements ===== */
+footer .footer .default-content-wrapper {
+  padding: 60px 48px 40px;
+}
+
+footer .footer .default-content-wrapper p:first-child {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+footer .footer .default-content-wrapper p:nth-child(2) {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 340px;
+  line-height: 1.65;
+}
+
+/* Footer columns table wrapper */
+footer .footer table {
+  width: 100%;
+}
+
+footer .footer th {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 12px;
+  display: block;
+}
+
+footer .footer td {
+  display: block;
+  padding: 5px 0;
+}
+
+footer .footer td a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+footer .footer td a:hover {
+  color: #fff !important;
+}
