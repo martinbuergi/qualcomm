@@ -1,11 +1,10 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
 let currentSlide = 0;
 let totalSlides = 0;
 let autoplayTimer = null;
-let progressTimer = null;
+let blockRef = null;
 
-function updateSlides(block, index) {
+function updateSlides(index) {
+  const block = blockRef;
   const slides = block.querySelectorAll('.carousel-slide');
   const dots = block.querySelectorAll('.carousel-dot');
   const progressBars = block.querySelectorAll('.carousel-progress-bar');
@@ -19,32 +18,32 @@ function updateSlides(block, index) {
     dot.classList.toggle('active', i === index);
   });
 
-  // Reset progress bars
-  progressBars.forEach((bar, i) => {
+  // Reset all progress bars instantly
+  progressBars.forEach((bar) => {
     bar.style.transition = 'none';
-    bar.style.width = i < index ? '100%' : '0%';
+    bar.style.width = '0%';
   });
 
-  // Animate active bar
+  // Animate the active bar after a reflow
   const activeBar = progressBars[index];
   if (activeBar) {
-    requestAnimationFrame(() => {
+    // Double rAF ensures browser has painted before transition starts
+    requestAnimationFrame(() => requestAnimationFrame(() => {
       activeBar.style.transition = 'width 5s linear';
       activeBar.style.width = '100%';
-    });
+    }));
   }
 
   currentSlide = index;
 }
 
-function nextSlide(block) {
-  const next = (currentSlide + 1) % totalSlides;
-  updateSlides(block, next);
+function nextSlide() {
+  updateSlides((currentSlide + 1) % totalSlides);
 }
 
-function startAutoplay(block) {
+function startAutoplay() {
   stopAutoplay();
-  autoplayTimer = setInterval(() => nextSlide(block), 5000);
+  autoplayTimer = setInterval(nextSlide, 5000);
 }
 
 function stopAutoplay() {
@@ -53,6 +52,7 @@ function stopAutoplay() {
 }
 
 export default function decorate(block) {
+  blockRef = block;
   const rows = [...block.children];
   totalSlides = rows.length;
 
@@ -62,10 +62,10 @@ export default function decorate(block) {
 
   rows.forEach((row, i) => {
     const slide = document.createElement('div');
+    // Start all slides without active — we add it after mount via rAF
     slide.className = 'carousel-slide';
-    slide.setAttribute('aria-hidden', i !== 0);
+    slide.setAttribute('aria-hidden', 'true');
 
-    // Each row has one or two cells: [content] or [content, bg-image]
     const cells = [...row.children];
     const contentCell = cells[0];
     const bgCell = cells[1];
@@ -75,8 +75,12 @@ export default function decorate(block) {
       if (img) {
         slide.style.backgroundImage = `url(${img.src})`;
       } else {
-        const bgColor = bgCell.textContent.trim();
-        if (bgColor) slide.style.backgroundColor = bgColor;
+        const bgValue = bgCell.textContent.trim();
+        if (bgValue.startsWith('/') || bgValue.startsWith('http')) {
+          slide.style.backgroundImage = `url(${bgValue})`;
+        } else if (bgValue) {
+          slide.style.backgroundColor = bgValue;
+        }
       }
     }
 
@@ -92,14 +96,14 @@ export default function decorate(block) {
   const controls = document.createElement('div');
   controls.className = 'carousel-controls';
 
-  // Progress bars / dots
   const dotsWrapper = document.createElement('div');
   dotsWrapper.className = 'carousel-dots';
 
-  for (let i = 0; i < totalSlides; i++) {
+  for (let i = 0; i < totalSlides; i += 1) {
     const dot = document.createElement('button');
     dot.className = 'carousel-dot';
-    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    dot.setAttribute('type', 'button');
 
     const bar = document.createElement('div');
     bar.className = 'carousel-progress-bar';
@@ -107,62 +111,68 @@ export default function decorate(block) {
 
     dot.addEventListener('click', () => {
       stopAutoplay();
-      updateSlides(block, i);
-      startAutoplay(block);
+      updateSlides(i);
+      startAutoplay();
     });
 
     dotsWrapper.appendChild(dot);
   }
 
-  // Prev/Next arrows
   const prev = document.createElement('button');
   prev.className = 'carousel-prev';
   prev.setAttribute('aria-label', 'Previous slide');
-  prev.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+  prev.setAttribute('type', 'button');
+  prev.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
   prev.addEventListener('click', () => {
     stopAutoplay();
-    updateSlides(block, (currentSlide - 1 + totalSlides) % totalSlides);
-    startAutoplay(block);
+    updateSlides((currentSlide - 1 + totalSlides) % totalSlides);
+    startAutoplay();
   });
 
   const next = document.createElement('button');
   next.className = 'carousel-next';
   next.setAttribute('aria-label', 'Next slide');
-  next.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+  next.setAttribute('type', 'button');
+  next.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
   next.addEventListener('click', () => {
     stopAutoplay();
-    updateSlides(block, (currentSlide + 1) % totalSlides);
-    startAutoplay(block);
+    updateSlides((currentSlide + 1) % totalSlides);
+    startAutoplay();
   });
 
   controls.appendChild(prev);
   controls.appendChild(dotsWrapper);
   controls.appendChild(next);
 
-  // Clear block and rebuild
+  // Mount
   block.innerHTML = '';
   block.appendChild(slideWrapper);
   block.appendChild(controls);
 
-  // Init
-  updateSlides(block, 0);
-  startAutoplay(block);
+  // Activate first slide AFTER paint — double rAF forces a real frame boundary
+  // so the CSS transition from opacity:0/translateX(30px) → opacity:1/translateX(0) fires
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    updateSlides(0);
+    startAutoplay();
+  }));
 
   // Pause on hover
   block.addEventListener('mouseenter', stopAutoplay);
-  block.addEventListener('mouseleave', () => startAutoplay(block));
+  block.addEventListener('mouseleave', startAutoplay);
 
   // Swipe support
-  let touchStart = 0;
-  block.addEventListener('touchstart', (e) => { touchStart = e.touches[0].clientX; }, { passive: true });
+  let touchStartX = 0;
+  block.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
   block.addEventListener('touchend', (e) => {
-    const diff = touchStart - e.changedTouches[0].clientX;
+    const diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
       stopAutoplay();
-      updateSlides(block, diff > 0
+      updateSlides(diff > 0
         ? (currentSlide + 1) % totalSlides
         : (currentSlide - 1 + totalSlides) % totalSlides);
-      startAutoplay(block);
+      startAutoplay();
     }
   });
 }
