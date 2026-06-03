@@ -53,13 +53,15 @@
   transform: translateY(-1px);
 }
 
-@media (width >= 900px) {
+/* Desktop: hero vertically centered in section, just horizontal padding */
+@media (min-width: 900px) {
   .hero {
     padding: 0 80px;
   }
 }
 
-@media (width <= 900px) {
+/* Mobile: restore vertical padding */
+@media (max-width: 899px) {
   .hero {
     padding: 80px 32px 60px;
   }
