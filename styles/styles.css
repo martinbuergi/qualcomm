@@ -39,7 +39,7 @@
   --qc-card-border: #2a2a2a;
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   :root {
     --body-font-size-m: 16px;
     --body-font-size-s: 14px;
@@ -246,7 +246,7 @@ main > .section:first-of-type {
   padding-top: 0;
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   main > .section > div {
     padding: 0 48px;
   }
