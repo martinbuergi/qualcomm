@@ -232,7 +232,7 @@ main img {
 /* sections */
 main > .section {
   margin: 0;
-  padding: 60px 0;
+  padding: 80px 0;
 }
 
 main > .section > div {
@@ -405,10 +405,10 @@ main > .section:has(.hero) > div {
 
 /* ===== dark-hero section (hero bg image via section metadata) ===== */
 main > .section.dark-hero {
-  min-height: 92vh;
-  background-color: #0a0a0a;
+  min-height: 94vh;
+  background-color: #060611;
   background-size: cover;
-  background-position: center right;
+  background-position: 70% center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
@@ -426,3 +426,108 @@ main > .section.dark-hero h1,
 main > .section.dark-hero h2,
 main > .section.dark-hero h3,
 main > .section.dark-hero p { color: #fff; }
+
+/* ===== Snapdragon section enhanced ===== */
+main > .section.snapdragon-red {
+  padding: 100px 0;
+}
+
+main > .section.snapdragon-red h2 {
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -1px;
+  margin: 8px 0 20px;
+}
+
+main > .section.snapdragon-red .default-content-wrapper > p:nth-of-type(2) {
+  font-size: 18px;
+  opacity: 0.9;
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* ===== Dark navy section enhanced ===== */
+main > .section.dark-navy {
+  padding: 100px 0;
+}
+
+main > .section.dark-navy h2 {
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 8px 0 20px;
+  max-width: 700px;
+}
+
+main > .section.dark-navy .default-content-wrapper > p:nth-of-type(2) {
+  font-size: 18px;
+  opacity: 0.85;
+  max-width: 580px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* ===== Dark developer section enhanced ===== */
+main > .section.dark h2 {
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 8px 0 20px;
+  max-width: 720px;
+}
+
+main > .section.dark .default-content-wrapper > p:nth-of-type(2) {
+  font-size: 18px;
+  opacity: 0.8;
+  max-width: 600px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* ===== Light gray section improved ===== */
+main > .section.light-gray {
+  padding: 72px 0;
+}
+
+main > .section.light-gray h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-color);
+  max-width: 700px;
+  margin: 12px 0 20px;
+}
+
+main > .section.light-gray .default-content-wrapper > p:not(:first-of-type):not(:last-of-type) {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+main > .section.light-gray .default-content-wrapper > p:last-of-type a {
+  color: var(--qc-blue);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--qc-blue);
+  padding-bottom: 2px;
+}
+
+main > .section.light-gray .default-content-wrapper > p:last-of-type a:hover {
+  color: var(--qc-blue-dark);
+  border-color: var(--qc-blue-dark);
+}
+
+/* ===== Cards section improved ===== */
+main > .section.dark.cards-container {
+  padding: 80px 0;
+}
+
+main > .section.dark.cards-container h2 {
+  margin-bottom: 40px;
+}
