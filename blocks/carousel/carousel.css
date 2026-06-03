@@ -23,8 +23,8 @@
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: flex-end;
-  padding: 0 0 100px 0;
+  align-items: center;
+  padding: 80px 0 120px 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -138,7 +138,7 @@
 /* Controls */
 .carousel-controls {
   position: absolute;
-  bottom: 36px;
+  bottom: 40px;
   left: 0;
   right: 0;
   z-index: 10;
